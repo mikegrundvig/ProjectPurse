@@ -17,14 +17,14 @@ fun main() {
 
     val app = Javalin.create { config ->
         config.addStaticFiles { staticFiles ->
-            staticFiles.directory = "C:/Users/Michael/IdeaProjects/StorageController/data/web"
+            staticFiles.directory = "../data/web"
             staticFiles.location = Location.EXTERNAL
         }
-        config.addSinglePageRoot("", "C:/Users/Michael/IdeaProjects/StorageController/data/web/index.html", Location.EXTERNAL)
+        config.addSinglePageRoot("", "../data/web/index.html", Location.EXTERNAL)
     }
 
     // Set up the DB
-    val dbFilesLocation = "data/db"
+    val dbFilesLocation = "../data/db"
     val baseScanPackage = "com.michaelgrundvig.storage"
     val jsonDBTemplate = JsonDBTemplate(dbFilesLocation, baseScanPackage)
 

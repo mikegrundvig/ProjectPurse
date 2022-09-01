@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation 'io.javalin:javalin:4.6.4'
-    implementation 'org.slf4j:slf4j-simple:1.8.0-beta4'
+    implementation 'org.slf4j:slf4j-simple:2.0.0'
     implementation 'com.google.zxing:core:3.5.0'
     implementation 'com.google.zxing:javase:3.5.0'
     implementation 'net.sf.barcode4j:barcode4j:2.1'
@@ -19,6 +19,16 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.michaelgrundvig.storage.MainKt'
+    }
+    baseName = 'StorageController-All'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 test {
