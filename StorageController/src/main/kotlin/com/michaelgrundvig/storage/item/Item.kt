@@ -9,20 +9,23 @@ data class Item(
     @Id
     override var id: Int = 0,
     val name: String = "",
-    val bins:List<Int> = mutableListOf(),
-    val tags: List<Int> = mutableListOf()
+    val description: String = "",
+    val bins: MutableList<Int> = mutableListOf(),
+    val tags: MutableList<Int> = mutableListOf()
 ) : Storable
 
-data class ItemDTO(
-    var id: Int = -1,
-    val name: String = "",
-    val bins:List<Int> = mutableListOf(),
-    val tags: List<Int> = mutableListOf()
+class ItemDTO(
+    @JvmField var id: Int = -1,
+    @JvmField val name: String = "",
+    @JvmField val description: String = "",
+    @JvmField val bins: MutableList<Int> = mutableListOf(),
+    @JvmField val tags: MutableList<Int> = mutableListOf()
 ) {
 
     constructor(item: Item): this(
         id = item.id,
         name = item.name,
+        description = item.description,
         bins = item.bins,
         tags = item.tags
     )
@@ -31,6 +34,7 @@ data class ItemDTO(
         return Item(
             id = this.id,
             name = this.name,
+            description = this.description,
             bins = this.bins,
             tags = this.tags
         )

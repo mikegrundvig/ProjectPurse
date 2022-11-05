@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.20'
 }
 
 group = 'com.michaelgrundvig.storage'
@@ -10,26 +10,49 @@ repositories {
 }
 
 dependencies {
-    implementation 'io.javalin:javalin:4.6.4'
-    implementation 'org.slf4j:slf4j-simple:2.0.0'
+    implementation 'io.javalin:javalin:5.1.2'
+    implementation 'io.javalin:javalin-rendering:5.1.2'
+    implementation 'gg.jte:jte:2.2.2'
+    //implementation 'org.thymeleaf:thymeleaf:3.0.15.RELEASE'
+
+    implementation 'org.slf4j:slf4j-api:2.0.3'
+    implementation 'io.github.microutils:kotlin-logging:3.0.0'
+    implementation 'ch.qos.logback:logback-core:1.4.3'
+    implementation 'ch.qos.logback:logback-classic:1.4.3'
+
+    //implementation 'com.tinder.statemachine:statemachine:0.2.0'
+
     implementation 'com.google.zxing:core:3.5.0'
     implementation 'com.google.zxing:javase:3.5.0'
     implementation 'net.sf.barcode4j:barcode4j:2.1'
+
+    // Serial port handling
+    implementation 'com.rm5248:JavaSerial:0.12'
+
+    // JSON DB
     implementation 'io.jsondb:jsondb-core:1.0.115-j11'
+
+    // Upgrading various libs to address CVEs in the version used by JSON DB
+    implementation 'commons-collections:commons-collections:3.2.2'
+    implementation 'commons-beanutils:commons-beanutils:1.9.4'
+    implementation 'com.google.guava:guava:31.1-jre'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4'
+
+
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': 'com.michaelgrundvig.storage.MainKt'
-    }
-    baseName = 'StorageController-All'
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
+//task fatJar(type: Jar) {
+//    manifest {
+//        attributes 'Main-Class': 'com.michaelgrundvig.storage.MainKt'
+//    }
+//    baseName = 'StorageController-All'
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+//    with jar
+//}
 
 test {
     useJUnitPlatform()

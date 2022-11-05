@@ -2,8 +2,9 @@ package com.michaelgrundvig.storage.drawer
 
 import com.michaelgrundvig.storage.bin.BinService
 import io.javalin.apibuilder.ApiBuilder.*
-import io.javalin.core.util.FileUtil
 import io.javalin.http.Context
+import io.javalin.http.bodyAsClass
+import io.javalin.util.FileUtil
 
 class DrawerController(
     private val binService: BinService,
@@ -21,10 +22,10 @@ class DrawerController(
     }
 
     private fun getDrawer(ctx: Context) {
-        val drawer:Drawer? = drawerService.byId(ctx.pathParam("id").toInt())
+        val drawer:DrawerDTO? = drawerService.byId(ctx.pathParam("id").toInt())
         drawer?.let {
             ctx.status(200)
-            ctx.json(DrawerDTO(drawer))
+            ctx.json(drawer)
             return
         }
         ctx.status(404)
@@ -33,7 +34,7 @@ class DrawerController(
     private fun createDrawer(ctx: Context) {
 
         // Ensure we don't already have a drawer
-        val drawer:Drawer? = drawerService.byId(ctx.pathParam("id").toInt())
+        val drawer:DrawerDTO? = drawerService.byId(ctx.pathParam("id").toInt())
         if(drawer != null) {
             ctx.status(400)
             ctx.result("Drawer already exists")
@@ -42,7 +43,7 @@ class DrawerController(
 
         // Get the request and save it out
         val drawerDTO = ctx.bodyAsClass<DrawerDTO>()
-        drawerService.create(drawerDTO.toDrawer())
+        drawerService.create(drawerDTO)
 
         ctx.status(200)
     }
@@ -67,7 +68,7 @@ class DrawerController(
 
         // Write the file to disk, we'll want to keep this for debugging even if it fails processing
         FileUtil.streamToFile(
-            uploadedFile.content,
+            uploadedFile.content(),
             "data/upload/drawer_${id}_row_${row}_column_${column}.jpg"
         )
 

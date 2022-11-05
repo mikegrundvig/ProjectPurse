@@ -9,15 +9,19 @@ class TagService(private val template: JsonDBTemplate): JsonDbService(template) 
         createCollection(Tag::class.java)
     }
 
-    fun create(tag: Tag) {
-        template.insert<Tag>(tag)
-    }
-
     fun byId(id: Int): Tag? {
         return template.findById(id, Tag::class.java)
     }
 
     fun getAll():List<Tag> {
         return template.findAll("Tags")
+    }
+
+    fun save(tag: Tag) {
+        template.upsert<Tag>(tag)
+    }
+
+    fun delete(tag: Tag) {
+        template.remove(tag, Tag::class.java)
     }
 }

@@ -21,6 +21,10 @@ class ItemService(private val template: JsonDBTemplate): JsonDbService(template)
         return template.findAll("Items")
     }
 
+    fun delete(item: Item) {
+        template.remove(item, Item::class.java)
+    }
+
     fun findItemsByTags(vararg tags:Int): List<Item> {
         val clause = tags.joinToString(" | ") { String.format("//tags[%s]/..", it) }
         println(clause)

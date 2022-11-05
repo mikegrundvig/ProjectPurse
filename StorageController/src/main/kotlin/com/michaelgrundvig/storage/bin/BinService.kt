@@ -9,12 +9,20 @@ class BinService(private val template:JsonDBTemplate): JsonDbService(template) {
         createCollection(Bin::class.java)
     }
 
-    fun create(bin: Bin) {
-        template.insert<Bin>(bin)
-    }
-
     fun byId(id: Int): Bin? {
         return template.findById(id, Bin::class.java)
+    }
+
+    fun getAll():List<Bin> {
+        return template.findAll("Bins")
+    }
+
+    fun save(bin: Bin) {
+        template.upsert<Bin>(bin)
+    }
+
+    fun delete(bin: Bin) {
+        template.remove(bin, Bin::class.java)
     }
 
     fun updateBinPosition(id: Int, newPosition: Position) {

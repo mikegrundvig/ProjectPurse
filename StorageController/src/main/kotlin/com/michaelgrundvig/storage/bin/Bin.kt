@@ -8,14 +8,14 @@ import io.jsondb.annotation.Id
 data class Bin(
     @Id
     override var id: Int = 0,
-    val type: Type = Type.OneByOne,
+    var type: Type = Type.OneByOne,
     val position: Position = Position(-1, -1, -1)
 ): Storable
 
-data class BinDTO(
-    val id: Int,
-    val type: Type,
-    val position: Position = Position(-1, -1, -1)
+class BinDTO(
+    @JvmField val id: Int,
+    @JvmField val type: Type,
+    @JvmField val position: Position = Position(-1, -1, -1)
 ) {
     constructor(bin:Bin): this(
         id = bin.id,
@@ -33,10 +33,10 @@ data class BinDTO(
 }
 
 
-data class Position(
-    var drawer:Int = -1,
-    var row:Int = -1,
-    var column:Int = 1
+class Position(
+    @JvmField var drawer:Int = -1,
+    @JvmField var row:Int = -1,
+    @JvmField var column:Int = 1
 )
 
 enum class Type {

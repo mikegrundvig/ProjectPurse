@@ -31,5 +31,5 @@ open class JsonDbService(private val template: JsonDBTemplate) {
 }
 
 interface Storable {
-    var id: Int
+   var id: Int
 }

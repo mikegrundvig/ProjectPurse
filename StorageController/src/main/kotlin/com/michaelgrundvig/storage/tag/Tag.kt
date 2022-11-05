@@ -8,12 +8,12 @@ import io.jsondb.annotation.Id
 data class Tag(
     @Id
     override var id: Int = 0,
-    val name: String = ""
+    var name: String = ""
 ) : Storable
 
-data class TagDTO(
-    val id: Int = 0,
-    val name: String = ""
+class TagDTO(
+    @JvmField val id: Int = 0,
+    @JvmField val name: String = ""
 ) {
     constructor(tag:Tag): this(
         id = tag.id,

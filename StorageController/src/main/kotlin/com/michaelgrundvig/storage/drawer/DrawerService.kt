@@ -6,15 +6,17 @@ import io.jsondb.JsonDBTemplate
 class DrawerService(private val template: JsonDBTemplate): JsonDbService(template) {
 
     init {
-        createCollection(Drawer::class.java)
+        createCollection(DrawerDTO::class.java)
+
+        template.findAll<DrawerDTO>("Drawers").forEach { println(it.toDrawer()) }
     }
 
-    fun create(drawer: Drawer) {
-        template.insert<Drawer>(drawer)
+    fun create(drawer: DrawerDTO) {
+        template.insert<DrawerDTO>(drawer)
     }
 
-    fun byId(id: Int): Drawer? {
-        return template.findById(id, Drawer::class.java)
+    fun byId(id: Int): DrawerDTO? {
+        return template.findById(id, DrawerDTO::class.java)
     }
 
 
