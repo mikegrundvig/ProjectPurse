@@ -21,8 +21,9 @@ barcode processing, etc. It also provides all the REST endpoints for the UI. **T
 **[Structure CAD Models](https://cad.onshape.com/documents/3ed4c562282025fcae1c9ac9/w/1ee086016c98cc6195ee0d50/e/e47bde5a2c54b21ef0918a0d?renderMode=0&uiState=636810cc86f78d47af3b8e66)**:
 All the structural models used to make the project; brackets, mounts, motion components, etc. are created with OnShape and are available for use.
 
-**[Bin CAD Models](https://cad.onshape.com/documents/20ccaa322070fb270333fa10/w/19f8712ec5f6d2b6f6294b21/e/b7a670a9cc606bfa0aa010ab?renderMode=0&uiState=63680fade32e0371c27079a3)**
+**[Bin CAD Models](https://cad.onshape.com/documents/20ccaa322070fb270333fa10/w/19f8712ec5f6d2b6f6294b21/e/b7a670a9cc606bfa0aa010ab?renderMode=0&uiState=63680fade32e0371c27079a3)**:
 The bins I use are available in OnShape as a model that can be used directly. In the future I might shift these to a different model based on some nice designs people are creating online. 
+
 ---
 
 PURSE is basically a project to help you categorize, organize, find, retrieve, and store anything that can fit in small bins.
