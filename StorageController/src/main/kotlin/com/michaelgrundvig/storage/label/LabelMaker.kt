@@ -4,10 +4,20 @@ import org.w3c.dom.Element
 import java.awt.*
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.lang.Exception
 import javax.imageio.*
 import kotlin.math.roundToInt
 
-class LabelMaker() {
+fun main(args: Array<String>) {
+    val startingNumber = args.getOrElse(0) { "0" }.toInt()
+    val fileName = args.getOrElse(1) {"barcodes.jpg"}
+    val labelMaker = LabelMaker()
+    val bytes = labelMaker.generateLabelSheet(startingNumber)
+    File(fileName).writeBytes(bytes)
+}
+
+class LabelMaker {
 
     // Configuration settings
     private val dpi = 1200
@@ -91,6 +101,6 @@ class LabelMaker() {
             return out.toByteArray()
         }
 
-        return ByteArray(0)
+        throw Exception("Something really went wrong here!")
     }
 }

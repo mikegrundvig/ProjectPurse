@@ -2,6 +2,7 @@ package com.michaelgrundvig.storage.label
 
 import java.util.*
 
+// TODO: remove this soon as it doesn't look like it's going to be needed in the end
 class IdGenerator {
 
     private val maxIterations = 1000

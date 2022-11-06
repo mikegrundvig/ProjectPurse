@@ -16,9 +16,7 @@ class BinController(
 
     fun routes() {
         return path("bin") {
-            get("label") {generateLabels(it)
-
-            }
+            get("label") { generateLabels(it) }
             post { createBin(it) }
             path("{id}") {
                 get { getBin(it) }
